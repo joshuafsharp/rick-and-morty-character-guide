@@ -1,3 +1,26 @@
+# Tech Decisions
+
+## Package Management: Choosing Yarn over NPM
+
+`npm` is the default package manager which is still prevalent across many projects, however the more recent package management tool `yarn` provides numerous benefits:
+- Stability: yarn provides more confidence in replicated builds across different machines, due to its better handling of package version resolutions.
+- Speed: multiple packages can be downloaded in parallel with yarn, vs npm where each package is sequentially downloaded. Yarn also allows downloading packages through a local cache.
+- Dedicated community and improvements continually being added from big players like Facebook. 
+
+## Styling Framework: Flexibility With TailwindCSS
+
+- It is a framework intended for developers that want flexibility in implementing a design
+- CSS is much easier to maintain for larger projects when there aren't a large set of CSS files and classes. Styles are instead defined on the elements that require styling. Updates to font size, background colour etc just require finding the component you want to change.
+- For simplicity in this challenge, I'm also using a service provided by Tailwind that I personally signed up for: [TailwindUI](https://tailwindui.com/). It just provides commonly used and nicely styled components that speed up the creation of an MVP.
+
+## Coding Standards: Simplified with Automated Tools Prettier & ESLint
+
+- [Prettier](https://prettier.io/) is an opinionated code formatter that makes code format opinions and discussions irrelevant. Familiarise yourself with how prettier formats your code, and you never have to think about whether brackets should start on the same line as the function declaration, or the line underneath
+- [ESLint](https://eslint.org/) is a Javascript linter that analyses your code as you're writing it, and highlights any issues that arise. Whether it's because you're missing a semicolon at the end of a line, or you're referencing a Typescript interface that hasn't been imported yet, ESLint outlines the issue and in many cases will automatically fix it for you
+- ESLint and Prettier go together like cheese and crackers on a warm Summer day down at the park on a picnic! They are only a couple of tools I would use in a project, and while they may be overkill for this simple project, I think it's still warranted with the trivial amount of effort it takes to add them.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
