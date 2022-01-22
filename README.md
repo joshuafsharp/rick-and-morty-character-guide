@@ -3,9 +3,10 @@
 ## Package Management: Choosing Yarn over NPM
 
 `npm` is the default package manager which is still prevalent across many projects, however the more recent package management tool `yarn` provides numerous benefits:
+
 - Stability: yarn provides more confidence in replicated builds across different machines, due to its better handling of package version resolutions.
 - Speed: multiple packages can be downloaded in parallel with yarn, vs npm where each package is sequentially downloaded. Yarn also allows downloading packages through a local cache.
-- Dedicated community and improvements continually being added from big players like Facebook. 
+- Dedicated community and improvements continually being added from big players like Facebook.
 
 ## Styling Framework: Flexibility With TailwindCSS
 
@@ -19,7 +20,19 @@
 - [ESLint](https://eslint.org/) is a Javascript linter that analyses your code as you're writing it, and highlights any issues that arise. Whether it's because you're missing a semicolon at the end of a line, or you're referencing a Typescript interface that hasn't been imported yet, ESLint outlines the issue and in many cases will automatically fix it for you
 - ESLint and Prettier go together like cheese and crackers on a warm Summer day down at the park on a picnic! They are only a couple of tools I would use in a project, and while they may be overkill for this simple project, I think it's still warranted with the trivial amount of effort it takes to add them.
 
+# Types
 
+## Rick and Morty API
+
+Thankfully the Rick and Morty API provides a [fully typed Javascript client](https://www.npmjs.com/package/rickmortyapi). To assist with development and ensuring the application uses an up to date collection of Typescript interfaces, these types should be imported directly from the `rickmortyapi` package. This allows us to not have to create and maintain the types ourselves, and we can ensure the types match the response data from the REST API.
+
+
+# State Management
+
+## React Context Instead of Redux
+
+Some further information can be found here, written by the creator of Redux:
+- https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
 
 # Getting Started with Create React App
 
