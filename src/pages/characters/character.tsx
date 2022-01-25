@@ -16,6 +16,11 @@ export default function CharacterPage() {
   // The character hasn't been fetched yet.
   if (!character) {
     const initCharacters = async () => {
+
+    dispatch({
+        type: "START_FETCHING_ALL_CHARACTERS"
+      })
+      
       const response = await fetchCharacterById(id);
 
       dispatch({

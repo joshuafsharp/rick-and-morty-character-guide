@@ -9,11 +9,18 @@ export default function HomePage() {
   );
 
   const initCharacters = async () => {
-    const response = await fetchAllCharacters();
+    dispatch({
+      type: "START_FETCHING_ALL_CHARACTERS",
+    });
+
+    const response = await fetchAllCharacters(1);
 
     dispatch({
       type: "FETCH_ALL_CHARACTERS",
-      payload: response.results,
+      payload: {
+        ...response,
+        currentPage: 1,
+      },
     });
   };
 

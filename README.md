@@ -34,6 +34,12 @@ Thankfully the Rick and Morty API provides a [fully typed Javascript client](htt
 Some further information can be found here, written by the creator of Redux:
 - https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
 
+# Further Improvements/ If I had more time
+
+transitions and animations https://reactjs.org/docs/animation.html
+
+better handling of initial state, and loading display to reduce Cumulative Layout Shift (CLS) and improve the visual aesthetics of the site when data is being fetched. This also ties in to lazy loading images to prevent content 'jumping around the page' as content is loaded in.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
