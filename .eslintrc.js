@@ -7,8 +7,7 @@ module.exports = {
     "airbnb",
     "airbnb-typescript",
     "plugin:import/typescript",
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
+    "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -16,10 +15,10 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: "latest",
-    project: './tsconfig.json',
+    project: 'tsconfig.json',
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
     "react/jsx-filename-extension": [
       2,

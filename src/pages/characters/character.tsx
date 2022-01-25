@@ -1,40 +1,42 @@
-import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { EmojiHappyIcon, EmojiSadIcon } from "@heroicons/react/solid";
-import Breadcrumbs from "../../components/Breadcrumbs";
-import * as CharactersContext from "../../state/context";
-import { fetchCharacterById } from "../../state/actions";
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { EmojiHappyIcon, EmojiSadIcon } from '@heroicons/react/solid';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import * as CharactersContext from '../../state/context';
+import { fetchCharacterById } from '../../state/actions';
 
 export default function CharacterPage() {
-  const { characters, dispatch } = useContext(
-    CharactersContext.CharactersContext
-  );
+  const { characters, dispatch } = useContext(CharactersContext.CharactersContext);
 
   const { id } = useParams();
+
   let character = characters[id];
 
   // The character hasn't been fetched yet.
-  if (!character) {
-    const initCharacters = async () => {
+  const initCharacters = async () => {
+    dispatch({
+      type: 'START_FETCHING_ALL_CHARACTERS',
+    });
+
+    const response = await fetchCharacterById(id);
 
     dispatch({
-        type: "START_FETCHING_ALL_CHARACTERS"
-      })
-      
-      const response = await fetchCharacterById(id);
+      type: 'FETCH_CHARACTER',
+      payload: response,
+    });
 
-      dispatch({
-        type: "FETCH_CHARACTER",
-        payload: response,
-      });
+    character = characters[id];
+  };
 
-      character = characters[id];
-    };
-
-    useEffect(() => {
+  useEffect(() => {
+    if (!character) {
       initCharacters();
-    }, []);
-  }
+    }
+
+    if (character) {
+      document.title = `${character.name} | Rick and Morty Character Guide`;
+    }
+  }, [character]);
 
   if (!character) {
     return (
@@ -44,21 +46,16 @@ export default function CharacterPage() {
     );
   }
 
-  useEffect(() => {
-    document.title = `${character.name} | Rick and Morty Character Guide`;
-  }, []);
-
-  
   const breadcrumbLinks = [
     {
       label: 'Characters',
-      path: '/characters'
+      path: '/characters',
     },
     {
-        label: character.name,
-        path: `/characters/${character.id}`
-    }
-  ]
+      label: character.name,
+      path: `/characters/${character.id}`,
+    },
+  ];
 
   return (
     <div className="w-full p-8 lg:p-16">
@@ -70,30 +67,22 @@ export default function CharacterPage() {
         </div>
 
         <div className="sm:ml-8">
-          <h1 className="text-3xl font-semibold mb-8 text-gray-700">
-            {character.name}
-          </h1>
+          <h1 className="text-3xl font-semibold mb-8 text-gray-700">{character.name}</h1>
 
           <p className="text-gray-500 font-medium">Status</p>
           <p className="flex items-center mb-4">
-            <span className="mr-1">{character.status}</span>{" "}
-            {character.status === "Alive" ? (
-              <EmojiHappyIcon
-                className="flex-shrink-0 h-5 w-5 text-green-500"
-                aria-hidden="true"
-              />
+            <span className="mr-1">{character.status}</span>{' '}
+            {character.status === 'Alive' ? (
+              <EmojiHappyIcon className="flex-shrink-0 h-5 w-5 text-green-500" aria-hidden="true" />
             ) : (
-              <EmojiSadIcon
-                className="flex-shrink-0 h-5 w-5 text-red-500"
-                aria-hidden="true"
-              />
+              <EmojiSadIcon className="flex-shrink-0 h-5 w-5 text-red-500" aria-hidden="true" />
             )}
           </p>
 
           <p className="text-gray-500 font-medium">Species</p>
           <p className="mb-4">{character.species}</p>
 
-          {character.type !== "" ? (
+          {character.type !== '' ? (
             <>
               <p className="text-gray-500 font-medium">Type</p>
               <p className="mb-4">{character.type}</p>
@@ -110,9 +99,7 @@ export default function CharacterPage() {
           <p className="mb-4">{character.gender}</p>
 
           <p className="text-gray-500 font-medium">Profile Created</p>
-          <p className="mb-4">
-            {new Date(character.created).toLocaleDateString()}
-          </p>
+          <p className="mb-4">{new Date(character.created).toLocaleDateString()}</p>
         </div>
       </div>
     </div>

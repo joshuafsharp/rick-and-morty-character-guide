@@ -4,7 +4,7 @@
  * SVG being loaded here is the app logo, we're using the 'load directly via
  * JSX/TSX' approach.
  */
-import React from "react";
+import React from 'react';
 
 export default function Logo() {
   return (

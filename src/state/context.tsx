@@ -1,6 +1,6 @@
-import React, { createContext, useReducer } from "react";
-import * as CharactersReducer from "./reducer";
-import { CharactersState } from "../common/types/characters";
+import React, { createContext, useReducer } from 'react';
+import * as CharactersReducer from './reducer';
+import { CharactersState } from '../common/types/characters';
 
 // Initial State
 export const initialState: CharactersState = {
@@ -19,7 +19,11 @@ export const initialState: CharactersState = {
 // Create Context
 export const CharactersContext = createContext<CharactersState>(initialState);
 
-export function ContextProvider({ children }: any) {
+export interface ContextProviderProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+export function ContextProvider({ children }: ContextProviderProps) {
   const [state, dispatch] = useReducer(CharactersReducer.default, initialState);
 
   return (

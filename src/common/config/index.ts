@@ -1,7 +1,7 @@
-import { AppConfig } from "../types/config";
+import { AppConfig } from '../types/config';
 
 const config: AppConfig = {
-    apiBaseUrl: 'https://rickandmortyapi.com/api'
-}
+  apiBaseUrl: 'https://rickandmortyapi.com/api',
+};
 
 export default config;

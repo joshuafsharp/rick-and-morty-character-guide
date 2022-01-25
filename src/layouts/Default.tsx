@@ -6,16 +6,22 @@
  * focus to the main page content - which is paying for the product/service.
  */
 
-import React from "react";
-import Header from "../components/Header";
+import React from 'react';
+import Header from '../components/Header';
 
-export default function DefaultLayout({ children }: any) {
+export interface DefaultLayoutProps {
+  children: JSX.Element | JSX.Element[];
+}
+
+export default function DefaultLayout({ children }: DefaultLayoutProps): JSX.Element {
   return (
     // Short hand syntax for declaring a react fragment.
     <div className="flex flex-col min-h-screen bg-gray-100">
       <Header />
 
-      <main className="max-w-screen-xl mx-auto w-full h-full bg-gray-100 flex-grow">{children}</main>
+      <main className="max-w-screen-xl mx-auto w-full h-full bg-gray-100 flex-grow">
+        {children}
+      </main>
     </div>
   );
 }

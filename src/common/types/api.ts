@@ -1,4 +1,4 @@
-import { Character } from "rickmortyapi/dist/interfaces";
+import { Character } from 'rickmortyapi/dist/interfaces';
 
 export interface ResponseSuccess {
   info: {
@@ -10,5 +10,5 @@ export interface ResponseSuccess {
 }
 
 export type CharactersResponseSuccess = ResponseSuccess & {
-    results: Character[];
-}
+  results: Character[];
+};
