@@ -44,6 +44,25 @@ export default (state: CharactersState, action: ContextCharactersAction): Charac
       return updatedState;
     }
 
+    /**
+     * Toggle the display of the filter overlay
+     */
+    case 'TOGGLE_FILTER_OVERLAY': {
+      return {
+        ...state,
+        filterOverlayOpen: action.payload,
+      };
+    }
+
+    case 'APPLY_FILTERS': {
+      return {
+        ...state,
+        filters: {
+          species: action.payload.value,
+        },
+      };
+    }
+
     default:
       return state;
   }

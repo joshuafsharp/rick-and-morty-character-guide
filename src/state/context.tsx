@@ -13,6 +13,10 @@ export const initialState: CharactersState = {
     prev: null,
     next: null,
   },
+  filters: {
+    species: null,
+  },
+  filterOverlayOpen: false,
   dispatch: () => undefined,
 };
 

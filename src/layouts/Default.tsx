@@ -6,7 +6,9 @@
  * focus to the main page content - which is paying for the product/service.
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
+import { CharactersContext } from '../state/context';
+import CharactersFilterOverlay from '../components/character/FilterOverlay';
 import Header from '../components/Header';
 
 export interface DefaultLayoutProps {
@@ -14,14 +16,16 @@ export interface DefaultLayoutProps {
 }
 
 export default function DefaultLayout({ children }: DefaultLayoutProps): JSX.Element {
+  const { filterOverlayOpen } = useContext(CharactersContext);
+
   return (
     // Short hand syntax for declaring a react fragment.
-    <div className="flex flex-col min-h-screen bg-gray-100">
+    <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main className="max-w-screen-xl mx-auto w-full h-full bg-gray-100 flex-grow">
-        {children}
-      </main>
+      <main className="max-w-screen-xl mx-auto w-full h-full flex-grow">{children}</main>
+
+      {filterOverlayOpen ? <CharactersFilterOverlay /> : null}
     </div>
   );
 }
