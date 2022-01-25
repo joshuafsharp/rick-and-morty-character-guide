@@ -62,7 +62,7 @@ export default function CharactersPagination() {
               aria-current="page"
               className={`${
                 paginationInfo.currentPage === 1
-                  ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600"
+                  ? "z-10 bg-blue-50 border-blue-500 text-blue-600"
                   : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
               } relative inline-flex items-center px-4 py-2 border text-sm font-medium`}
             >
@@ -72,7 +72,7 @@ export default function CharactersPagination() {
               href="/characters?page=2"
               className={`${
                 paginationInfo.currentPage === 2
-                  ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600"
+                  ? "z-10 bg-blue-50 border-blue-500 text-blue-600"
                   : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
               } relative inline-flex items-center px-4 py-2 border text-sm font-medium`}
             >
@@ -82,7 +82,7 @@ export default function CharactersPagination() {
               href="/characters?page=3"
               className={`${
                 paginationInfo.currentPage === 3
-                  ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600"
+                  ? "z-10 bg-blue-50 border-blue-500 text-blue-600"
                   : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
               } relative inline-flex items-center px-4 py-2 border text-sm font-medium`}
             >
@@ -95,7 +95,7 @@ export default function CharactersPagination() {
               href={`/characters?page=${lastPage}`}
               className={`${
                 paginationInfo.currentPage === lastPage
-                  ? "z-10 bg-indigo-50 border-indigo-500 text-indigo-600"
+                  ? "z-10 bg-blue-50 border-blue-500 text-blue-600"
                   : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
               } relative inline-flex items-center px-4 py-2 border text-sm font-medium`}
             >
