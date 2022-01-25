@@ -9,6 +9,6 @@ export interface ResponseSuccess {
   };
 }
 
-export type CharacterResponseSuccess = ResponseSuccess & {
+export type CharactersResponseSuccess = ResponseSuccess & {
     results: Character[];
 }

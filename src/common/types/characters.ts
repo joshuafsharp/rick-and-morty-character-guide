@@ -1,7 +1,9 @@
+import React from "react";
 import { Character } from "rickmortyapi/dist/interfaces";
 
 export interface CharactersState {
   characters: { [id: string]: Character };
+  dispatch: React.Dispatch<ContextCharactersAction>;
 }
 
 export type ContextActionType = "FETCH_CHARACTERS" | "FETCH_CHARACTER";

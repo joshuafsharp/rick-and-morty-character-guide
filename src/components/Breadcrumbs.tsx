@@ -1,13 +1,9 @@
 import React from "react";
 import { ChevronRightIcon, HomeIcon } from '@heroicons/react/solid'
 import { Link } from "react-router-dom";
+import { BreadcrumbLink } from "../common/types/link";
 
-const pages = [
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Project Nero', href: '#', current: true },
-]
-
-export default function Example() {
+export default function Breadcrumbs({links}: {links: BreadcrumbLink[]}) {
   return (
     <nav className="flex mb-8" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4">
@@ -19,17 +15,17 @@ export default function Example() {
             </Link>
           </div>
         </li>
-        {pages.map((page) => (
-          <li key={page.name}>
+        {links.map((link) => (
+          <li key={link.label}>
             <div className="flex items-center">
               <ChevronRightIcon className="flex-shrink-0 h-5 w-5 text-gray-400" aria-hidden="true" />
-              <a
-                href={page.href}
+              <Link
+                to={link.path}
                 className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-                aria-current={page.current ? 'page' : undefined}
+                aria-current={window.location.pathname === link.path ? 'page' : undefined}
               >
-                {page.name}
-              </a>
+                {link.label}
+              </Link>
             </div>
           </li>
         ))}

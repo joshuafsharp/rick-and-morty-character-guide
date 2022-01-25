@@ -1,29 +1,29 @@
-import React, { useEffect, useReducer } from "react";
-import { fetchAllCharacters } from "../contexts/actions";
-import * as CharactersProvider from "../contexts/CharactersContext";
-import * as CharactersReducer from "../contexts/CharactersReducer";
-import FavouriteCharactersPreview from '../components/home/FavouriteCharactersPreview';
+import React, { useContext, useEffect } from "react";
+import { fetchAllCharacters } from "../state/actions";
+import * as CharactersContext from "../state/context";
+import FavouriteCharactersPreview from "../components/home/FavouriteCharactersPreview";
 
 export default function HomePage() {
-  // const { characters, fetchAllCharacters } = useContext(CharactersProvider.CharactersContext);
-  const [state, dispatch] = useReducer(CharactersReducer.default, CharactersProvider.initialState);
+  const { characters, dispatch } = useContext(
+    CharactersContext.CharactersContext
+  );
 
   const initCharacters = async () => {
     const response = await fetchAllCharacters();
-    
+
     dispatch({
       type: "FETCH_ALL_CHARACTERS",
-      payload: response.results
-    })
-  }
-  
+      payload: response.results,
+    });
+  };
+
   useEffect(() => {
     initCharacters();
-    
+
     document.title = `All your favourite characters in one place! | Rick and Morty Character Guide`;
   }, []);
 
-  const favouriteCharacters = Object.values(state.characters).slice(0, 5)
+  const favouriteCharacters = Object.values(characters).slice(0, 5);
 
   return (
     <div className="p-8 lg:p-16">

@@ -1,16 +1,16 @@
 import React, { useEffect, useReducer } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
 import CharacterList from "../../components/character/CharacterList";
-import { fetchAllCharacters } from "../../contexts/actions";
-import * as CharactersProvider from "../../contexts/CharactersContext";
-import * as CharactersReducer from "../../contexts/CharactersReducer";
+import { fetchAllCharacters } from "../../state/actions";
+import * as CharactersContext from "../../state/context";
+import * as CharactersReducer from "../../state/reducer";
 
 export default function CharactersPage() {
   // Full page load requires fetching all the characters data
 
   const [state, dispatch] = useReducer(
     CharactersReducer.default,
-    CharactersProvider.initialState
+    CharactersContext.initialState
   );
 
   const initCharacters = async () => {
@@ -28,9 +28,16 @@ export default function CharactersPage() {
     document.title = `All the Characters | Rick and Morty Character Guide`;
   }, []);
 
+  const breadcrumbLinks = [
+    {
+      label: 'Characters',
+      path: '/characters'
+    }
+  ]
+
   return (
     <div className="p-8 lg:p-16">
-      <Breadcrumbs />
+      <Breadcrumbs links={breadcrumbLinks}/>
 
       <h1 className="mb-8 text-3xl font-semibold text-gray-900">Characters</h1>
 

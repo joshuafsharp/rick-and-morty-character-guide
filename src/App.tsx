@@ -4,15 +4,18 @@ import DefaultLayout from "./layouts/Default";
 import CharactersPage from "./pages/characters";
 import CharacterPage from "./pages/characters/character";
 import HomePage from "./pages/index";
+import { ContextProvider } from "./state/context";
 
 export default function App() {
   return (
-    <DefaultLayout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/characters" element={<CharactersPage />} />
-        <Route path="/characters/:id" element={<CharacterPage />} />
-      </Routes>
-    </DefaultLayout>
+    <ContextProvider>
+      <DefaultLayout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/characters" element={<CharactersPage />} />
+          <Route path="/characters/:id" element={<CharacterPage />} />
+        </Routes>
+      </DefaultLayout>
+    </ContextProvider>
   );
 }
