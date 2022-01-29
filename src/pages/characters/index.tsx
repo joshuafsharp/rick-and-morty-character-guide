@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import CharactersFilterButton from '../../components/character/FilterButton';
@@ -8,23 +8,32 @@ import { fetchAllCharacters } from '../../state/actions';
 import * as CharactersContext from '../../state/context';
 import { SpeciesFacetOption } from '../../common/filters/facets';
 import { CharactersFilters } from '../../common/types/characters';
+import { AppError } from '../../common/error';
 
-export default function CharactersPage() {
-  // Full page load requires fetching all the characters data
-
-  const { characters, fetchingCharacters, dispatch } = useContext(
+export default function CharactersPage(): JSX.Element {
+  const { characters, fetchingCharacters, filters, dispatch } = useContext(
     CharactersContext.CharactersContext,
   );
 
   const [searchParams] = useSearchParams();
 
+  // Message to display if there is an error when fetching characters
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const page = Number(searchParams.get('page')) ? Number(searchParams.get('page')) : 1;
   const species = searchParams.get('species');
 
+  const params = new URLSearchParams(window.location.search);
+  if (filters.species && filters.species !== species) {
+    params.set('species', filters.species);
+  }
+
+  window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
+
   const initCharacters = async () => {
-    let filters: CharactersFilters | undefined;
+    let updatedFilters: CharactersFilters | undefined;
     if (species) {
-      filters = {
+      updatedFilters = {
         species: species as SpeciesFacetOption,
       };
 
@@ -32,20 +41,26 @@ export default function CharactersPage() {
         type: 'APPLY_FILTERS',
         payload: {
           facet: 'species',
-          value: filters.species,
+          value: updatedFilters.species,
         },
       });
     }
 
-    const response = await fetchAllCharacters(page, filters);
+    try {
+      const response = await fetchAllCharacters(page, updatedFilters);
 
-    dispatch({
-      type: 'FETCH_ALL_CHARACTERS',
-      payload: {
-        ...response,
-        currentPage: page,
-      },
-    });
+      dispatch({
+        type: 'FETCH_ALL_CHARACTERS',
+        payload: {
+          ...response,
+          currentPage: page,
+        },
+      });
+    } catch (error) {
+      if (error instanceof AppError) {
+        setErrorMessage(error.message);
+      }
+    }
   };
 
   useEffect(() => {
@@ -60,6 +75,14 @@ export default function CharactersPage() {
       path: '/characters',
     },
   ];
+
+  /**
+   * TODO: Ideally we would have an error component to better render
+   * reusable error messages with styling.
+   */
+  if (errorMessage) {
+    return <div className="flex justify-center items-center h-screen">{errorMessage}</div>;
+  }
 
   return (
     <div className="p-8 lg:p-16">

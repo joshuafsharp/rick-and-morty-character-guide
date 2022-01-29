@@ -10,6 +10,7 @@ import React, { useContext } from 'react';
 import { CharactersContext } from '../state/context';
 import CharactersFilterOverlay from '../components/character/FilterOverlay';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export interface DefaultLayoutProps {
   children: JSX.Element | JSX.Element[];
@@ -24,6 +25,8 @@ export default function DefaultLayout({ children }: DefaultLayoutProps): JSX.Ele
       <Header />
 
       <main className="max-w-screen-xl mx-auto w-full h-full flex-grow">{children}</main>
+
+      <Footer />
 
       {filterOverlayOpen ? <CharactersFilterOverlay /> : null}
     </div>

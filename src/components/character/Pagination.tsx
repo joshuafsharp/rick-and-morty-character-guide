@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 import { Link } from 'react-router-dom';
 import { CharactersContext } from '../../state/context';
-import { PAGE_SIZE } from '../../common/constants';
+import { PAGE_SIZE } from '../../common/config/constants';
 
 export default function CharactersPagination(): JSX.Element {
   const { paginationInfo, filters } = useContext(CharactersContext);

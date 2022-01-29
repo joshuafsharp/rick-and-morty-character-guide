@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CharactersContext } from '../../state/context';
 
-export default function CharactersFilterButton() {
+export default function CharactersFilterButton(): JSX.Element {
   const { dispatch } = useContext(CharactersContext);
   const openFilterOverlay = () => {
     dispatch({

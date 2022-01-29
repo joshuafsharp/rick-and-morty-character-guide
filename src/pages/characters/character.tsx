@@ -1,12 +1,16 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { EmojiHappyIcon, EmojiSadIcon } from '@heroicons/react/solid';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import * as CharactersContext from '../../state/context';
 import { fetchCharacterById } from '../../state/actions';
+import { AppError } from '../../common/error';
 
-export default function CharacterPage() {
+export default function CharacterPage(): JSX.Element {
   const { characters, dispatch } = useContext(CharactersContext.CharactersContext);
+
+  // Message to display if there is an error when fetching characters
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const { id } = useParams();
 
@@ -18,12 +22,18 @@ export default function CharacterPage() {
       type: 'START_FETCHING_ALL_CHARACTERS',
     });
 
-    const response = await fetchCharacterById(id);
+    try {
+      const response = await fetchCharacterById(id);
 
-    dispatch({
-      type: 'FETCH_CHARACTER',
-      payload: response,
-    });
+      dispatch({
+        type: 'FETCH_CHARACTER',
+        payload: response,
+      });
+    } catch (error) {
+      if (error instanceof AppError) {
+        setErrorMessage(error.message);
+      }
+    }
 
     character = characters[id];
   };
@@ -37,6 +47,14 @@ export default function CharacterPage() {
       document.title = `${character.name} | Rick and Morty Character Guide`;
     }
   }, [character]);
+
+  /**
+   * TODO: Ideally we would have an error component to better render
+   * reusable error messages with styling.
+   */
+  if (errorMessage) {
+    return <div className="flex h-screen justify-center items-center">{errorMessage}</div>;
+  }
 
   if (!character) {
     return (

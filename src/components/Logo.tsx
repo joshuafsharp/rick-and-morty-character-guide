@@ -6,7 +6,7 @@
  */
 import React from 'react';
 
-export default function Logo() {
+export default function Logo(): JSX.Element {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3" width="36" height="36">
       <title>Rick and Morty character guide logo</title>

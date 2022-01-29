@@ -18,7 +18,7 @@ export default function FavouriteCharactersPreview({
       <div className="flex justify-between items-center mb-4">
         <h2 className="font-semibold text-xl text-gray-700">Fan Favourites</h2>
 
-        <Link to="characters" className="font-medium text-blue-600 hover:text-blue-400">
+        <Link to="/characters" className="font-medium text-blue-600 hover:text-blue-400">
           View all
         </Link>
       </div>

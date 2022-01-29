@@ -1,6 +1,5 @@
 import { XIcon } from '@heroicons/react/solid';
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { fetchAllCharacters } from '../../state/actions';
 import { SpeciesFacetOption, speciesFacetOptions } from '../../common/filters/facets';
 import { CharactersContext } from '../../state/context';
@@ -9,7 +8,7 @@ interface FormData {
   facetValuesSelections: { species: SpeciesFacetOption };
 }
 
-export default function CharactersFilterOverlay() {
+export default function CharactersFilterOverlay(): JSX.Element {
   const { filters, dispatch } = useContext(CharactersContext);
 
   const initialFormData: FormData = {
@@ -74,11 +73,6 @@ export default function CharactersFilterOverlay() {
         currentPage: page,
       },
     });
-
-    // Set the species filter query param in the URL so it is persisted across page reloads.
-    const [searchParams] = useSearchParams();
-    searchParams.set('page', page.toString());
-    searchParams.set('species', formData.facetValuesSelections.species);
 
     closeFilterOverlay();
   };
