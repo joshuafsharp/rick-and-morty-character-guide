@@ -3,7 +3,7 @@ import { fetchAllCharacters, fetchCharacterById } from '../state/actions';
 
 describe('API data fetching', () => {
   describe('Fetching all characters', () => {
-    test('GET /characters contains pagination info.', async () => {
+    test('GET /character contains pagination info.', async () => {
       const response = await fetchAllCharacters(1);
 
       expect(response.info).toHaveProperty('count');
@@ -12,20 +12,20 @@ describe('API data fetching', () => {
       expect(response.info).toHaveProperty('prev');
     });
 
-    test('GET /characters contains characters results.', async () => {
+    test('GET /character contains characters results.', async () => {
       const response = await fetchAllCharacters(1);
 
       expect(response).toHaveProperty('results');
     });
 
-    test('GET /characters returns an array of characters.', async () => {
+    test('GET /character returns an array of characters.', async () => {
       const response = await fetchAllCharacters(1);
 
       expect(response.results[0]).toHaveProperty('id', 1);
       expect(response.results[0]).toHaveProperty('name', 'Rick Sanchez');
     });
 
-    test('GET /characters?page=2 includes the second page of results.', async () => {
+    test('GET /character?page=2 includes the second page of results.', async () => {
       const response = await fetchAllCharacters(2);
 
       expect(response.info).toHaveProperty(
@@ -38,7 +38,7 @@ describe('API data fetching', () => {
       );
     });
 
-    test('GET /characters?page=1&species=Human to include only human characters', async () => {
+    test('GET /character?page=1&species=Human to include only human characters', async () => {
       const response = await fetchAllCharacters(1, {
         species: 'Human',
       });
@@ -50,7 +50,7 @@ describe('API data fetching', () => {
       expect(response.results).toEqual(expect.arrayContaining(expectedArrayResult));
     });
 
-    test('GET /characters?page=99999999 to throw a 404 error', async () => {
+    test('GET /character?page=99999999 to throw a 404 error', async () => {
       let thrownError;
 
       try {

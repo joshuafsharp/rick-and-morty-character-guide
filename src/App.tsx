@@ -6,7 +6,7 @@ import CharacterPage from './pages/characters/character';
 import HomePage from './pages/index';
 import { ContextProvider } from './state/context';
 
-export default function App() {
+export default function App(): JSX.Element {
   return (
     <ContextProvider>
       <DefaultLayout>
