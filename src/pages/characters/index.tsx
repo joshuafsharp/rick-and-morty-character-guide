@@ -85,7 +85,7 @@ export default function CharactersPage(): JSX.Element {
   }
 
   return (
-    <div className="p-8 lg:p-16">
+    <div className="px-4 py-8 lg:py-16">
       <Breadcrumbs links={breadcrumbLinks} />
 
       <div className="flex flex-col sm:flex-row sm:justify-between">

@@ -76,7 +76,7 @@ export default function CharacterPage(): JSX.Element {
   ];
 
   return (
-    <div className="w-full p-8 lg:p-16">
+    <div className="w-full px-4 py-8 lg:py-16">
       <Breadcrumbs links={breadcrumbLinks} />
 
       <div className="flex flex-col sm:flex-row lg:flex-nowrap">

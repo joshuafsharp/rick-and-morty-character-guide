@@ -41,7 +41,7 @@ export default function HomePage(): JSX.Element {
   const favouriteCharacters = Object.values(characters ?? []).slice(0, 5);
 
   return (
-    <div className="p-8 lg:p-16">
+    <div className="px-4 py-8 lg:py-16">
       <h1 className="text-3xl font-semibold mb-8 text-gray-700">Rick and Morty Character Guide</h1>
 
       <p className="mb-4">

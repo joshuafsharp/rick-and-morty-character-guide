@@ -4,8 +4,8 @@ import Logo from './Logo';
 
 export default function Header(): JSX.Element {
   return (
-    <header className="p-3 border-b bg-white">
-      <div className="flex justify-between items-center max-w-screen-xl mx-auto">
+    <header className="border-b bg-white">
+      <div className="px-4 py-3 flex justify-between items-center max-w-screen-xl mx-auto">
         <Link to="/">
           <Logo />
         </Link>
